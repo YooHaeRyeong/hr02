@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>못난이 농산물 - 토마토 이야기</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barrio&family=Kirang+Haerang&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fastly.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Wanted Sans', sans-serif;
+      background: url('bg_3.png') center/cover no-repeat fixed;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 60px;
+      padding-bottom: 120px;
+    }
+
+    .text-box {
+      padding: 15px 25px;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 1.6;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      white-space: normal;
+      width: auto;
+      max-width: 80%;
+      margin: 20px auto;
+    }
+
+    .text-box.top-right {
+      background: #fff;
+      color: #222;
+      text-align: center;
+      margin-right: 350px;
+      margin-top: 100px;
+    }
+
+    .text-box.middle-left {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      margin-left: 600px;
+      margin-top: -50px;
+      z-index: 3;
+    }
+
+    .text-box.bottom-right {
+      background: #fff;
+      color: #222;
+      text-align: center;
+      margin-right: 100px;
+      margin-top: 1500px;
+    }
+
+    .image-section {
+      position: relative;
+      width: 100%;
+      height: 700px;
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .main-tomato {
+      position: fixed;
+      width: 600px;
+      height: auto;
+      top: 10%;
+      left: 35%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .shovel {
+      position: absolute;
+      width: 1600px;
+      height: auto;
+      top: -100px;
+      left: 50%;
+       transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    .dirt1, .dirt2 {
+      position: absolute;
+      width: 500px;
+      height: auto;
+      transform: translateX(-50%);
+      z-index: 3;
+    }
+
+    .dirt1 {
+      top: 950px;
+      left: 50%;
+    }
+
+    .dirt2 {
+      top: 1500px;
+      left: 25%;
+    }
+
+    .dirt3 {
+      position: absolute;
+      width: 500px;
+      height: auto;
+      top: 2300px;
+      left: 40%;
+       transform: translateX(-50%);
+      z-index: 3;
+    }
+
+    .next-btn {
+      position: relative;
+      margin-top: 0px;
+      margin-bottom: 100px;
+      margin-left: 1285px;
+      background: #FF2424;
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+      border: none;
+      padding: 18px 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      transition: background 0.2s;
+      z-index: 10;
+    }
+    .next-btn:hover {
+      background: #d13e0a;
+    }
+
+    .fixed-dirt1, .fixed-dirt2 {
+      position: fixed !important;
+      width: 500px !important;
+      height: auto !important;
+      transform: translateX(-50%) !important;
+      z-index: 3 !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="text-box top-right">
+      친구들은 모두 세상 밖으로 나갔는데,<br>
+      저는 혼자 어디로 가는건가요?
+    </div>
+    <div class="image-section">
+      <img src="s_1.png" alt="삽" class="shovel">
+      <img src="dirt1.png" alt="흙1" class="dirt1">
+      <img src="dirt2.png" alt="흙2" class="dirt2">
+      <img src="dirt3.png" alt="흙3" class="dirt3">
+    </div>
+     <div class="text-box middle-left">
+      너는 다른 토마토들과<br>
+      모양이 달라서 세상 밖으로 갈 수 없어.
+    </div>
+    <div class="text-box bottom-right">
+      저는 이렇게나 건강한데,<br>
+      단지 모양이 동그랗지 않아서 도로 땅에 묻힌대요..
+    </div>
+  </div>
+
+  <img src="toma_11.png" alt="큰 토마토" class="main-tomato">
+
+  <a href="#">
+    <button class="next-btn">다음 →</button>
+  </a>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const mainTomato = document.querySelector('.main-tomato');
+      const dirt1 = document.querySelector('.dirt1');
+      const dirt2 = document.querySelector('.dirt2');
+
+      if (!mainTomato || !dirt1 || !dirt2) {
+        console.error('One or more elements not found!');
+        return;
+      }
+
+      const dirt1Offset = 250;
+      const dirt2Offset = 150;
+
+      let ticking = false;
+      let lastScrollY = window.scrollY;
+      const scrollThreshold = 5;
+
+      const updatePositions = () => {
+        const tomatoRect = mainTomato.getBoundingClientRect();
+        const tomatoTop = tomatoRect.top;
+        const dirt1Rect = dirt1.getBoundingClientRect();
+        const dirt2Rect = dirt2.getBoundingClientRect();
+
+        if (dirt1Rect.top <= tomatoTop + dirt1Offset) {
+          if (!dirt1.classList.contains('fixed-dirt1')) {
+            dirt1.classList.add('fixed-dirt1');
+            dirt1.style.top = `${tomatoTop + dirt1Offset}px`;
+            dirt1.style.left = `${dirt1Rect.left + dirt1Rect.width/2}px`;
+          }
+        } else {
+          if (dirt1.classList.contains('fixed-dirt1')) {
+            dirt1.classList.remove('fixed-dirt1');
+            dirt1.style.top = '';
+            dirt1.style.left = '';
+          }
+        }
+
+        if (dirt2Rect.top <= tomatoTop + dirt2Offset) {
+          if (!dirt2.classList.contains('fixed-dirt2')) {
+            dirt2.classList.add('fixed-dirt2');
+            dirt2.style.top = `${tomatoTop + dirt2Offset}px`;
+            dirt2.style.left = `${dirt2Rect.left + dirt2Rect.width/2}px`;
+          }
+        } else {
+          if (dirt2.classList.contains('fixed-dirt2')) {
+            dirt2.classList.remove('fixed-dirt2');
+            dirt2.style.top = '';
+            dirt2.style.left = '';
+          }
+        }
+
+        ticking = false;
+      };
+
+      const handleScroll = () => {
+        if (Math.abs(window.scrollY - lastScrollY) < scrollThreshold) {
+          return;
+        }
+
+        lastScrollY = window.scrollY;
+
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updatePositions();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      };
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+
+      updatePositions();
+
+      window.addEventListener('resize', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updatePositions();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+    });
+  </script>
+</body>
+</html>

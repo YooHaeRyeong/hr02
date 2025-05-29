@@ -1,0 +1,183 @@
+<html>
+    <head>
+        <title>못난이 농산물</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Barrio&family=Kirang+Haerang&display=swap" rel="stylesheet">   
+        <style>
+            @import url('https://fastly.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css');
+
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Kirang Haerang', sans-serif;
+            }
+            section {
+                position: relative;
+                width: 100vw;
+                height: 200vh;
+                background-image: url(bg_1.png);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                background-position: bottom center;
+                overflow: hidden;
+            }
+            .wrap {
+                width: 1000px;
+                height: 250px;
+                position: relative;
+                margin: auto;
+                perspective: 500px;
+                text-align: center;
+            }
+            .title-area {
+                text-align: center;
+                margin-top: 40px;
+            }
+            .ugly {
+                font-family: 'Barrio', cursive;
+                font-size: 150px;
+                color: #f15a29;
+                letter-spacing: 2px;
+            }
+            .agri {
+                font-size: 60px;
+                color: #fff;
+                font-family: 'Barrio', cursive;
+                margin-top: -10px;
+                white-space: nowrap;
+            }
+            .kor-title {
+                font-size: 100px;
+                color: #fff;
+                font-family: 'Kirang Haerang', cursive;
+                margin-top: 25px;
+                padding-right: 200px;
+                letter-spacing: 4px;
+            }
+            .desc-box {
+                position: absolute;
+                left: 20%;
+                top: 900px;
+                background: rgba(255,255,255);
+                padding: 20px 20px;
+                width: 420px;
+                height: 60px;
+                font-size: 20px;
+                color: #222;
+                font-family: 'Wanted Sans', sans-serif;
+                font-weight: bold;
+                line-height: 1.7;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+                
+            }
+            .desc-box span {
+                color: #f15a29;
+            }
+            .sprout {
+                position: absolute;
+                left: 55%;
+                top: 120px;
+                width: 180px;
+                z-index: 2;
+            }
+            .tomato-1 {
+                position: absolute;
+                left: 53%;
+                top: 1000px;
+                width: 380px;
+                z-index: 2;
+            }
+            .tomato-2 {
+                position: absolute;
+                left: 50%;
+                top: 1240px;
+                width: 380px;
+                z-index: 2;
+            }
+            .tomato-3 {
+                position: absolute;
+                left: 66%;
+                top: 1135px;
+                width: 350px;
+                z-index: 2;
+            }
+            .watering-cans {
+                position: absolute;
+                left: 35%;
+                top: 1100px;
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+            }
+            .watering-can {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                width: fit-content;
+            }
+            .watering-can img {
+                width: 200px;
+                height: auto;
+                transition: transform 0.2s ease;
+                display: block;
+            }
+            .watering-can:hover img {
+                transform: scale(1.2);
+            }
+            .drag-guide {
+                position: absolute;
+                left: 33.5%;
+                top: 1020px;
+                color: #fff;
+                font-family: 'Wanted Sans', sans-serif;
+                font-size: 14px;
+                font-weight: semibold;
+                background: #101010;
+                padding: 10px 18px;
+            }
+            .done-btn {
+                position: absolute;
+                right: 7%;
+                bottom: 60px;
+                background: #FF2424;
+                color: #fff;
+                font-size: 20px;
+                font-weight: bold;
+                border: none;
+                padding: 18px 30px;
+                cursor: pointer;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+                transition: background 0.2s;
+            }
+            .done-btn:hover {
+                background: #d13e0a;
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+            <div class="wrap" style="padding-top: 50px;">
+                <div class="ugly">UGLY</div>
+                <div class="agri">AGRICULTURAL PRODUCTS</div>
+                <div class="kor-title">못난이 농산물</div>
+            </div>
+            <div class="wrap desc-box">
+                당신은 유능한 농부라고 들었어요.<br>
+                부디 저희를 영양가 있는 <span>멋쟁이 토마토</span>로 키워주세요!
+            </div>
+            <img src="tomato.png" class="tomato-1" alt="토마토1">
+            <img src="tomato.png" class="tomato-2" alt="토마토2">
+            <img src="tomato.png" class="tomato-3" alt="토마토3">
+            <div class="drag-guide">원하는 물뿌리개를 들고 드래그해주세요.</div>
+            <div class="wrap watering-cans">
+                <div class="watering-can"><img src="w_1.png" alt="무농약"></div>
+                <div class="watering-can"><img src="w_2.png" alt="유기농"></div>
+                <div class="watering-can"><img src="w_3.png" alt="성장 촉진제"></div>
+            </div>
+            <a href="index2.html">
+                <button class="done-btn">완료했어요 →</button>
+            </a>
+        </section>
+    </body>
+</html>
