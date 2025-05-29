@@ -121,6 +121,10 @@
                 height: auto;
                 transition: transform 0.2s ease;
                 display: block;
+                cursor: grab;
+            }
+            .watering-can img.dragging {
+                opacity: 0.5;
             }
             .watering-can:hover img {
                 transform: scale(1.2);
@@ -153,6 +157,12 @@
             .done-btn:hover {
                 background: #d13e0a;
             }
+            .tomato-1, .tomato-2, .tomato-3 {
+                transition: all 0.3s ease;
+            }
+            .tomato-1.dragover, .tomato-2.dragover, .tomato-3.dragover {
+                transform: scale(1.1);
+            }
         </style>
     </head>
     <body>
@@ -179,5 +189,56 @@
                 <button class="done-btn">완료했어요 →</button>
             </a>
         </section>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const wateringCans = document.querySelectorAll('.watering-can img');
+                const tomatoes = document.querySelectorAll('.tomato-1, .tomato-2, .tomato-3');
+                const dragGuide = document.querySelector('.drag-guide');
+
+                // 물뿌리개별 토마토 이미지 매핑
+                const tomatoImages = {
+                    'w_1.png': 'toma_1.png',  // 무농약 -> 형성장애 토마토
+                    'w_2.png': 'toma_2.png',  // 유기농 -> 정상 토마토
+                    'w_3.png': 'toma_3.png'   // 성장 촉진제 -> 정상 토마토
+                };
+
+                wateringCans.forEach(can => {
+                    can.setAttribute('draggable', 'true');
+                    
+                    can.addEventListener('dragstart', (e) => {
+                        e.dataTransfer.setData('text/plain', can.src.split('/').pop());
+                        can.classList.add('dragging');
+                    });
+
+                    can.addEventListener('dragend', () => {
+                        can.classList.remove('dragging');
+                    });
+                });
+
+                tomatoes.forEach(tomato => {
+                    tomato.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        tomato.classList.add('dragover');
+                    });
+
+                    tomato.addEventListener('dragleave', () => {
+                        tomato.classList.remove('dragover');
+                    });
+
+                    tomato.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        tomato.classList.remove('dragover');
+                        
+                        const wateringCanType = e.dataTransfer.getData('text/plain');
+                        const newTomatoImage = tomatoImages[wateringCanType];
+                        
+                        if (newTomatoImage) {
+                            tomato.src = newTomatoImage;
+                            dragGuide.style.opacity = '0.5';
+                        }
+                    });
+                });
+            });
+        </script>
     </body>
 </html>
