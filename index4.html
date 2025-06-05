@@ -65,19 +65,39 @@
         width: 100%;
         height: 100%;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         color: white;
         font-size: 20px;
         text-align: center;
-        background-color: rgba(0, 0, 0, 0.5); /* Adjust transparency as needed */
-        opacity: 0; /* Default hidden state */
-        transition: opacity 0.5s ease; /* Smooth transition */
-        pointer-events: none; /* Allow clicks to pass through text overlay to image container if needed */
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+        padding: 40px;
+        box-sizing: border-box;
+    }
+
+    .image-text p {
+        margin: 0;
+        line-height: 1.6;
+        width: 100%;
+        max-width: 400px;  /* 텍스트 최대 너비 제한 */
+    }
+
+    .image-text p:first-child {
+        font-weight: bold;
+        margin-bottom: 20px;
+        font-size: 22px;  /* 제목 텍스트 크기 키움 */
+    }
+
+    .image-text p:last-child {
+        font-size: 18px;  /* 설명 텍스트 크기 조정 */
     }
 
     .image-container img {
-        display: block; /* Ensure image is block level */
+        display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -148,42 +168,47 @@
                 <p class="text1" style="margin-top: 0px; margin-bottom: 10px; text-align: center;">호버해서 오해를 풀어보세요.</p>
             
             <!-- Image with hover effect - Tomato -->
-            <div class="image-container" style="position: absolute; top: 250px; left: 350px; width: 300px; height: 300px; overflow: hidden; cursor: pointer;">
-                <img src="toma_1.png" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="image-container" style="position: absolute; top: 250px; left: 350px; width: 500px; height: 500px; overflow: hidden; cursor: pointer;">
+                <img src="toma_1.png" style="width: 100%; height: 100%; object-fit: contain;">
                 <div class="image-text">
-                    <p>못생기면 맛도 없을 것이다<br>→ 모양과 맛은 직접적인<br>상관관계가 없어요.</p>
+                    <p>못생기면 맛도 없을 것이다</p>
+                    <p>→ 모양과 맛은 직접적인<br>상관관계가 없어요.</p>
                 </div>
             </div>
 
             <!-- Image with hover effect - Zucchini -->
-            <div class="image-container" style="position: absolute; top: 350px; right: 300px; width: 350px; height: 350px; overflow: hidden; cursor: pointer;">
-                <img src="a_1.png" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="image-container" style="position: absolute; top: 480px; right: 200px; width: 500px; height: 500px; overflow: hidden; cursor: pointer;">
+                <img src="a_1.png" style="width: 100%; height: 100%; object-fit: contain;">
                 <div class="image-text">
-                     <p>크키가 작으면 영양도 부족하다<br>→ 영양소는 크기와 무관,<br>작은 과일이 오히려 당도가 높기도 해요.</p>
+                    <p>크키가 작으면 영양도 부족하다</p>
+                    <p>→ 영양소는 크기와 무관,<br>작은 과일이 오히려 당도가 높기도 해요.</p>
                 </div>
             </div>
 
              <!-- Image with hover effect - Pear -->
-             <div class="image-container" style="position: absolute; top: 580px; left: 50%; transform: translateX(-50%); width: 450px; height: 450px; overflow: hidden; cursor: pointer;">
-                 <img src="a_2.png" style="width: 100%; height: 100%; object-fit: cover;">
+             <div class="image-container" style="position: absolute; top: 780px; left: 50%; transform: translateX(-50%); width: 500px; height: 500px; overflow: hidden; cursor: pointer;">
+                 <img src="a_2.png" style="width: 100%; height: 100%; object-fit: contain;">
                  <div class="image-text">
-                      <p>모양이 이상하면 위험한 농산물이다<br>→ 못난이의 경우 오히려 농약을<br>적게쓰거나 유기농일 경우 많이 나타나요.</p>
+                      <p>모양이 이상하면 위험한 농산물이다</p>
+                      <p>→ 못난이의 경우 오히려 농약을<br>적게쓰거나 유기농일 경우 많이 나타나요.</p>
                  </div>
              </div>
 
               <!-- Image with hover effect - Carrot -->
-              <div class="image-container" style="position: absolute; top: 800px; left: 200px; width: 500px; height: 500px; overflow: hidden; cursor: pointer;">
-                  <img src="a_3.png" style="width: 100%; height: 100%; object-fit: cover;">
+              <div class="image-container" style="position: absolute; top: 1300px; left: 200px; width: 500px; height: 500px; overflow: hidden; cursor: pointer;">
+                  <img src="a_3.png" style="width: 100%; height: 100%; object-fit: contain;">
                   <div class="image-text">
-                       <p>못난이 농산물은 어차피 전부 폐기되니 구입해도 의미가 없다<br>→ 소비가 늘어나면 생산자가 더 많은 못난이를 유통할 수 있고,<br>전체 폐기율을 줄일 수 있어요.</p>
+                       <p>못난이 농산물은 어차피 전부 폐기되니 구입해도 의미가 없다</p>
+                       <p>→ 소비가 늘어나면 생산자가 더 많은 못난이를 유통할 수 있고,<br>전체 폐기율을 줄일 수 있어요.</p>
                   </div>
               </div>
 
                <!-- Image with hover effect - Lemon -->
-               <div class="image-container" style="position: absolute; top: 900px; right: 200px; width: 500px; height: 500px; overflow: hidden; cursor: pointer;">
-                   <img src="a_4.png" style="width: 100%; height: 100%; object-fit: cover;">
+               <div class="image-container" style="position: absolute; top: 1500px; right: 200px; width: 500px; height: 500px; overflow: hidden; cursor: pointer;">
+                   <img src="a_4.png" style="width: 100%; height: 100%; object-fit: contain;">
                    <div class="image-text">
-                        <p>못난이 농산물은 공식적으로 판매되지 않는다<br>→  다양한 플랫폼을 통해 널리 판매되고 있어요.<br></p>
+                        <p>못난이 농산물은 공식적으로 판매되지 않는다</p>
+                        <p>→ 다양한 플랫폼을 통해 널리 판매되고 있어요.</p>
                    </div>
                </div>
 
