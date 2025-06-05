@@ -1,8 +1,245 @@
 <html>
     <head>
         <title>못난이 농산물</title>
+        <link href="https://fonts.googleapis.com/css2?family=Barrio&family=Kirang+Haerang&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+        <style>
+    @import url('https://fastly.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.1/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Wanted Sans', sans-serif;
+      color: #fff;
+      background-color: black;
+    }
+
+    .text1{
+        font-family: 'Wanted Sans', sans-serif;
+        font-size: 20px;
+        font-weight:bold;
+        margin-right: 10px;
+    }
+
+    .text2{
+        font-family: 'Kirang Haerang', cursive;
+        font-size: 24px;
+        margin-left: 10px;
+    }
+    .text3{
+        font-family: 'Kirang Haerang', cursive;
+        font-size: 24px;
+        margin-left: 10px;
+    }
+
+    .text4{
+        font-family: 'Wanted Sans', sans-serif;
+        font-size: 50px;
+        font-weight:bold;
+        margin-right: 10px;
+    }
+
+    .text5{
+        font-family: 'Kirang Haerang', cursive;
+        font-size:100px;
+        font-weight:regular;
+        margin-left: 10px;
+    }
+
+    .text6{
+        font-family: 'Wanted Sans', sans-serif;
+        font-size: 30px;
+        font-weight:bold;
+        line-height: 1.5;
+    }
+
+    .image-container:hover .image-text {
+        opacity: 1;
+    }
+
+    .image-text {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 20px;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.5); /* Adjust transparency as needed */
+        opacity: 0; /* Default hidden state */
+        transition: opacity 0.5s ease; /* Smooth transition */
+        pointer-events: none; /* Allow clicks to pass through text overlay to image container if needed */
+    }
+
+    .image-container img {
+        display: block; /* Ensure image is block level */
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Remove or comment out previous split image transition styles and rules */
+    /*
+    .image-container .image-left,
+    .image-container .image-right {
+        display: none;
+    }
+    .image-container:hover .image-left {
+        transform: translateX(-100%);
+    }
+    .image-container:hover .image-right {
+        transform: translateX(100%);
+    }
+    */
+
+    </style>
     </head>
     <body>
-        <section
+        <section style="background-image: url('bg_3.png'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh; padding-top: 60px;">
+            <div class="text3" style="text-align: center; margin-top: 90px;">
+                <div style="display: inline-block; margin: 0 70px;">
+                    <img src="toma_1.png" alt="무농약 토마토" style="width: 210px;">
+                    <p><무농약 토마토></p>
+                </div>
+                <div style="display: inline-block; margin: 0 70px;">
+                    <img src="toma_2.png" alt="농약 토마토" style="width: 210px;">
+                    <p><농약 토마토></p>
+                </div>
+                <div style="display: inline-block; margin: 0 70px;">
+                    <img src="toma_3.png" alt="성장 촉진제 토마토" style="width: 210px;">
+                    <p><성장 촉진제 토마토></p>
+                </div>
+            </div>
+            <div class="text1" style="text-align: center; margin-top: 100px; margin-left: 300px; margin-right: 300px; background-color: black; color: white; padding: 20px;">
+                <p>세 토마토 중 가장 건강한 농산물인 <무농약 토마토>는 왜 혼자만 도로 땅에 묻혔을까요?</p>
+            </div>
+        </section>
+
+        <!-- Section for the text before sticky section -->
+        <section style="background-color: black; color: white; padding: 150px 20px; text-align: center;">
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <p class="text1" style="margin-right: 10px;">단지 모양이 특이하게 생긴</p>
+                <h1 class="text5" style="color: #FF4E4E; margin: 0 10px; margin-top: 0;">못난이 농산물</h1>
+                <p class="text1" style="margin-left: 10px;">이었기 때문이였어요.</p>
+            </div>
+        </section>
         
+        <!-- Sticky section wrapper -->
+        <div id="sticky-wrapper" style="height: 400vh; position: relative; margin-top: 0;">
+            <section id="image-section" style="background-color: black; color: white; position: sticky; top: 0; width: 100%; height: 100vh; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 150px;">
+                <p class="text1" style="margin-top: 0px; margin-bottom: 10px; text-align: center;">못생겼다는 이유만으로</p>
+                <h2 class="text4" style="color: white; margin-top: 10px; text-align: center;">매년 <span style="color: #FF4E4E;">버려지는</span> 농산물은</h2>
+                <div id="image-scroll-container" style="display: flex; align-items: center; margin-top: 40px; will-change: transform;">
+                    <img src="t_1.png" alt="못난이 농산물" style="width: 900px; margin: 0 40px; flex-shrink: 0;">
+                    <img src="t_2.png" alt="못난이 농산물" style="width: 900px; margin: 0 40px; flex-shrink: 0;">
+                    <img src="t_3.png" alt="못난이 농산물" style="width: 900px; margin: 0 40px; flex-shrink: 0;">
+                </div>
+            </section>
+        </div>
+        
+        <!-- New Section based on provided image layout -->
+        <section style="background-color: black; color: white; padding: 100px 20px; text-align: center; position: relative; height: 1500px;">
+                <h2 class="text6" style="color: white; margin-top: 10px; text-align: center; margin-bottom: 100px;">모양이 못나서 받는 <span style="color: #FF4E4E;">오해</span>도 있어요.</h2>
+            
+            <!-- Image with hover effect - Tomato -->
+            <div class="image-container" style="position: absolute; top: 250px; left: 350px; width: 300px; height: 300px; overflow: hidden; cursor: pointer;">
+                <img src="toma_1.png" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="image-text">
+                    <p>못생기면 맛도 없을 것이다<br>→ 모양과 맛은 직접적인<br>상관관계가 없어요.</p>
+                </div>
+            </div>
+
+            <!-- Image with hover effect - Zucchini -->
+            <div class="image-container" style="position: absolute; top: 480px; right: 200px; width: 350px; height: 350px; overflow: hidden; cursor: pointer;">
+                <img src="a_1.png" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="image-text">
+                     <p>크키가 작으면 영양도 부족하다<br>→ 영양소는 크기와 무관,<br>작은 과일이 오히려 당도가 높기도 해요.</p>
+                </div>
+            </div>
+
+             <!-- Image with hover effect - Pear -->
+             <div class="image-container" style="position: absolute; top: 780px; left: 50%; transform: translateX(-50%); width: 450px; height: 450px; overflow: hidden; cursor: pointer;">
+                 <img src="a_2.png" style="width: 100%; height: 100%; object-fit: cover;">
+                 <div class="image-text">
+                      <p>모양이 이상하면 위험한 농산물이다<br>→ 못난이의 경우 오히려 농약을<br>적게쓰거나 유기농일 경우 많이 나타나요.</p>
+                 </div>
+             </div>
+
+              <!-- Image with hover effect - Carrot -->
+              <div class="image-container" style="position: absolute; top: 1300px; left: 200px; width: 500px; height: 500px; overflow: hidden; cursor: pointer;">
+                  <img src="a_3.png" style="width: 100%; height: 100%; object-fit: cover;">
+                  <div class="image-text">
+                       <p>못난이 농산물은 어차피 전부 폐기되니 구입해도 의미가 없다<br>→ 소비가 늘어나면 생산자가 더 많은 못난이를 유통할 수 있고,<br>전체 폐기율을 줄일 수 있어요.</p>
+                  </div>
+              </div>
+
+               <!-- Image with hover effect - Lemon -->
+               <div class="image-container" style="position: absolute; top: 1500px; right: 200px; width: 500px; height: 500px; overflow: hidden; cursor: pointer;">
+                   <img src="a_4.png" style="width: 100%; height: 100%; object-fit: cover;">
+                   <div class="image-text">
+                        <p>못난이 농산물은 공식적으로 판매되지 않는다<br>→  다양한 플랫폼을 통해 널리 판매되고 있어요.<br></p>
+                   </div>
+               </div>
+
+        </section>
+
+        <div style="height: 100vh; background-color: black;"></div>
+        <script>
+            const stickyWrapper = document.getElementById('sticky-wrapper');
+            const container = document.getElementById('image-scroll-container');
+
+            if (stickyWrapper && container) {
+                 // 이미지가 실제로 차지하는 너비 계산 (margin 포함)
+                 let contentWidth = 0;
+                 Array.from(container.children).forEach(img => {
+                     const imgWidth = img.offsetWidth;
+                     const style = window.getComputedStyle(img);
+                     const imgMarginLeft = parseFloat(style.marginLeft) || 0;
+                     const imgMarginRight = parseFloat(style.marginRight) || 0;
+                     contentWidth += imgWidth + imgMarginLeft + imgMarginRight;
+                 });
+
+                const updateScroll = () => {
+                    const wrapperTop = stickyWrapper.getBoundingClientRect().top;
+                    // 스크롤 가능한 높이: stickyWrapper의 총 높이에서 뷰포트 높이를 뺀 값
+                    const scrollableHeight = stickyWrapper.offsetHeight - window.innerHeight;
+                    // 스크롤 진행률 (0에서 1 사이): wrapperTop이 0일 때 0, wrapperTop이 -scrollableHeight일 때 1
+                    const progress = Math.max(0, Math.min(1, -wrapperTop / scrollableHeight));
+
+                    // 가로 스크롤 이동 범위
+                    // 시작 위치: 컨테이너의 왼쪽 끝이 뷰포트 오른쪽 끝에 맞춰지도록
+                    const initialTranslateX = window.innerWidth;
+
+                    // 최종 위치: 컨테이너의 오른쪽 끝이 뷰포트 왼쪽 끝에 맞춰지도록
+                    const finalTranslateX = -contentWidth;
+
+                    // 진행률에 따라 translateX 값 계산 (initialTranslateX에서 finalTranslateX까지 이동)
+                    const newTranslateX = initialTranslateX + (finalTranslateX - initialTranslateX) * progress;
+
+                    container.style.transform = `translateX(${newTranslateX}px)`;
+                };
+
+                window.addEventListener('scroll', updateScroll);
+                updateScroll(); // 초기 로드 시 위치 설정
+
+                 // 리사이즈 시 contentWidth 및 위치 재계산
+                 window.addEventListener('resize', () => {
+                     contentWidth = 0; // contentWidth 재계산
+                      Array.from(container.children).forEach(img => {
+                         const imgWidth = img.offsetWidth;
+                         const style = window.getComputedStyle(img);
+                         const imgMarginLeft = parseFloat(style.marginLeft) || 0;
+                         const imgMarginRight = parseFloat(style.marginRight) || 0;
+                         contentWidth += imgWidth + imgMarginLeft + imgMarginRight;
+                     });
+                     updateScroll(); // 현재 스크롤 위치에 맞춰 위치 업데이트
+                 });
+            }
+        </script>
     </body>
+</html>
