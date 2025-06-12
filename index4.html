@@ -54,8 +54,15 @@
         line-height: 1.5;
     }
 
+    .image-container {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
     .image-container:hover .image-text {
         opacity: 1;
+        pointer-events: auto;
     }
 
     .image-text {
@@ -74,7 +81,6 @@
         background-color: rgba(0, 0, 0, 0.5);
         opacity: 0;
         transition: opacity 0.5s ease;
-        pointer-events: none;
         padding: 40px;
         box-sizing: border-box;
     }
@@ -101,6 +107,100 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+
+    .drag-guide {
+                position: absolute;
+                left: 39%;
+                top: 160px;
+                color: #fff;
+                font-family: 'Wanted Sans', sans-serif;
+                font-size: 14px;
+                font-weight: semibold;
+                background: #101010;
+                padding: 10px 18px;
+    }
+
+    @keyframes gentleFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+    }
+
+    @keyframes bigMove1 {
+        0% { transform: translate(0, 0); }
+        25% { transform: translate(30px, -20px); }
+        50% { transform: translate(0, -40px); }
+        75% { transform: translate(-30px, -20px); }
+        100% { transform: translate(0, 0); }
+    }
+
+    @keyframes bigMove2 {
+        0% { transform: translate(0, 0); }
+        25% { transform: translate(-40px, -30px); }
+        50% { transform: translate(0, -50px); }
+        75% { transform: translate(40px, -30px); }
+        100% { transform: translate(0, 0); }
+    }
+
+    @keyframes bigMove3 {
+        0% { transform: translate(0, 0); }
+        25% { transform: translate(35px, -25px); }
+        50% { transform: translate(0, -45px); }
+        75% { transform: translate(-35px, -25px); }
+        100% { transform: translate(0, 0); }
+    }
+
+    @keyframes diagonalMove1 {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(50px, -50px); }
+    }
+
+    @keyframes diagonalMove2 {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(-60px, -60px); }
+    }
+
+    @keyframes diagonalMove3 {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(40px, -40px); }
+    }
+
+    @keyframes bounce1 {
+        0% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(3px, -4px) rotate(2deg); }
+        50% { transform: translate(-3px, -6px) rotate(-2deg); }
+        75% { transform: translate(3px, -4px) rotate(2deg); }
+        100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+    @keyframes bounce2 {
+        0% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(-4px, -3px) rotate(-2deg); }
+        50% { transform: translate(4px, -5px) rotate(2deg); }
+        75% { transform: translate(-4px, -3px) rotate(-2deg); }
+        100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+    @keyframes bounce3 {
+        0% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(3px, -3px) rotate(1.5deg); }
+        50% { transform: translate(-3px, -4px) rotate(-1.5deg); }
+        75% { transform: translate(3px, -3px) rotate(1.5deg); }
+        100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+    .dirt-animation-1 {
+        animation: bounce1 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    .dirt-animation-2 {
+        animation: bounce2 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        animation-delay: 0.5s;
+    }
+
+    .dirt-animation-3 {
+        animation: bounce3 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        animation-delay: 1s;
     }
 
     /* Remove or comment out previous split image transition styles and rules */
@@ -141,7 +241,7 @@
         </section>
 
         <!-- Section for the text before sticky section -->
-        <section style="background-color: black; color: white; padding: 150px 20px; text-align: center;">
+        <section style="background-color: black; color: white; padding: 100px 20px; text-align: center;">
             <div style="display: flex; justify-content: center; align-items: center;">
                 <p class="text1" style="margin-right: 10px;">단지 모양이 특이하게 생긴</p>
                 <h1 class="text5" style="color: #FF4E4E; margin: 0 10px; margin-top: 0;">못난이 농산물</h1>
@@ -163,12 +263,12 @@
         </div>
         
         <!-- New Section based on provided image layout -->
-        <section style="background-color: black; color: white; padding: 100px 20px; text-align: center; position: relative; height: 1500px;">
-                <h2 class="text6" style="color: white; margin-top: 10px; text-align: center; margin-bottom: 30px;">모양이 못나서 받는 <span style="color: #FF4E4E;">오해</span>도 있어요.</h2>
-                <p class="text1" style="margin-top: 0px; margin-bottom: 10px; text-align: center;">호버해서 오해를 풀어보세요.</p>
+        <section style="background-color: black; color: white; padding: 100px 20px; text-align: center; position: relative; min-height: 2000px;">
+                <h2 class="text6" style="color: white; margin-top: 0px; text-align: center; margin-bottom: 30px;">모양이 못나서 받는 <span style="color: #FF4E4E;">오해</span>도 있어요.</h2>
+                <p class="text1 drag-guide">못난이 농산물에 마우스를 올려 오해를 풀어보세요.</p>
             
             <!-- Image with hover effect - Tomato -->
-            <div class="image-container" style="position: absolute; top: 250px; left: 160px; width: 500px; height: 500px; overflow: hidden; cursor: pointer;">
+            <div class="image-container" style="position: absolute; top: 280px; left: 400px; width: 400px; height: 400px; overflow: hidden;">
                 <img src="toma_1.png" style="width: 100%; height: 100%; object-fit: contain;">
                 <div class="image-text">
                     <p>못생기면 맛도 없을 것이다</p>
@@ -177,7 +277,7 @@
             </div>
 
             <!-- Image with hover effect - Zucchini -->
-            <div class="image-container" style="position: absolute; top: 350px; right: 200px; width: 500px; height: 500px; overflow: hidden; cursor: pointer;">
+            <div class="image-container" style="position: absolute; top: 380px; right: 260px; width: 450px; height: 450px; overflow: hidden;">
                 <img src="a_1.png" style="width: 100%; height: 100%; object-fit: contain;">
                 <div class="image-text">
                     <p>크키가 작으면 영양도 부족하다</p>
@@ -186,7 +286,7 @@
             </div>
 
              <!-- Image with hover effect - Pear -->
-             <div class="image-container" style="position: absolute; top: 780px; left: 45%; transform: translateX(-50%); width: 700px; height: 500px; overflow: hidden; cursor: pointer;">
+             <div class="image-container" style="position: absolute; top: 740px; left: 40%; transform: translateX(-50%); width: 500px; height: 500px; overflow: hidden;">
                  <img src="a_2.png" style="width: 100%; height: 100%; object-fit: contain;">
                  <div class="image-text">
                       <p>모양이 이상하면 위험한 농산물이다</p>
@@ -194,33 +294,98 @@
                  </div>
              </div>
 
-              <!-- Image with hover effect - Carrot -->
-              <div class="image-container" style="position: absolute; top: 1100px; left: 200px; width: 500px; height: 500px; overflow: hidden; cursor: pointer;">
-                  <img src="a_3.png" style="width: 100%; height: 100%; object-fit: contain;">
-                  <div class="image-text">
-                       <p>못난이 농산물은 어차피 전부 폐기되니 구입해도 의미가 없다</p>
-                       <p>→ 소비가 늘어나면 생산자가 더 많은 못난이를 유통할 수 있고,<br>전체 폐기율을 줄일 수 있어요.</p>
-                  </div>
-              </div>
-
                <!-- Image with hover effect - Lemon -->
-               <div class="image-container" style="position: absolute; top: 1200px; right: 200px; width: 600px; height: 500px; overflow: hidden; cursor: pointer;">
+               <div class="image-container" style="position: absolute; top: 1250px; right: 500px; width: 400px; height: 300px; overflow: hidden;">
                    <img src="a_4.png" style="width: 100%; height: 100%; object-fit: contain;">
                    <div class="image-text">
-                        <p>못난이 농산물은 공식적으로 판매되지 않는다</p>
-                        <p>→ 다양한 플랫폼을 통해 널리 판매되고 있어요.</p>
+                        <p>못난이 농산물은 공식적으로<br>판매되지 않는다</p>
+                        <p>→ 다양한 플랫폼을 통해<br>널리 판매되고 있어요.</p>
                    </div>
                </div>
 
+            <div style="position: relative; margin-top: 1200px; text-align: center;">
+                <img src="f_1.png" style="max-width: 100%; height: auto;">
+                <div style="position: absolute; top: 800px; left: 50; right: 0; margin: 0 auto; width: calc(100% - 730px);">
+                    <div class="text1" style="text-align: center; background-color: black; color: white; padding: 20px;">
+                        <p>알고보면 판매에 지장이 없는 못난이 농산물, 버려지는 낭비를 어떻게 줄일 수 있을까요?</p>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center; margin-top: 200px;">
+                    <p class="text1" style="margin-right: 10px;">못난이 농산물을
+                        활용하여 훌륭한 상품으로 재탄생 시키는</p>
+                </div>
+                <div>
+                <h1 class="text5" style="color: #FF4E4E; margin: 0 10px; margin-top: 0;">푸드리퍼브</h1>
+                </div>
+                <div style="justify-content: center; align-items: center; margin-top: 120px;">
+                    <p class="text1" style="margin-right: 10px;">못난이 농산물의 좋은 가치를 나누며</p>
+                    <img src="f_7.png" style="width: 600px; height: auto; margin-left: -10px;">
+                    <p class="text1" style="margin-right: 10px; margin-bottom: 50px;">저렴한 가격에 농산물을 판매해요.</p>
+                </div>
+                <div style="position: relative; margin-top: 250px; text-align: center;">
+                    <p class="text1" style="margin-bottom: 0px; line-height: 2
+                    ;">아직 울퉁불퉁한 모양이 어색한 분들을 위해,<br>새로운 식품형태로 가공해 판매해요.</p>
+                    <div style="position: relative; width: 400px; height: 400px; margin: 0 auto;">
+                        <!-- <img src="f_2.png" style="width: 400px; height: auto; margin-left: 20px;"> -->
+                        <img src="f_4.png" style="width: 55%; height: 100%; object-fit: contain; position: absolute; top: 30px; left: -300px;">
+                        <img src="f_5.png" style="width: 90%; height: 100%; object-fit: contain; position: absolute; top: -10px; left: 400px;">
+                        <img src="f_6.png" style="width: 65%; height: 100%; object-fit: contain; position: absolute; top: 50px; left: 70px;">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                    <p class="text1" style="margin-top: 300px; margin-bottom:0px; line-height: 2.2;">푸드 리퍼브 상품으로<br>땅에 파묻혔던 못난이 토마토를 구할 수 있어요.</p>
+                    <!-- <p class="drag-guide" style="margin-top: 3140px; line-height: 2.2;">땅 속 못난이 토마토를 클릭해 푸드리퍼브 해보세요.</p> -->
+                    </div>
+                    <div style="position: relative; width: 100%; height: 500px;">
+                        <!-- <img src="bgbg.png" style="position: absolute; left: 0; top: 50; width: 100%; height: 135%; object-fit: cover; z-index: 1;">
+                        <img src="dirt1.png" class="dirt-animation-1" style="position: absolute; left: 450; top: 350; width: 45%; object-fit: cover; z-index: 3;">
+                        <img src="dirt2.png" class="dirt-animation-2" style="position: absolute; left: 500; top: 100; width: 45%; object-fit: cover; z-index: 4;">
+                        <img src="dirt3.png" class="dirt-animation-3" style="position: absolute; left: 300; top: 300; width: 40%; object-fit: cover; z-index: 5;">
+                        <a href="https://www.foodrepublic.kr/" target="_blank" style="position: absolute; left: 500; top: 130; width: 40%; height: auto; z-index: 2; cursor: pointer;">
+                            <img src="tomatoma.png" style="width: 100%; height: auto; object-fit: contain; opacity: 1;">
+                        </a> -->
+                        <div>
+                        <img src="c_1.png" style="position: relative; z-index: 6; left: -200; top: 50; width: 20%;">
+                        <img src="tomatoma.png" style="position: absolute; left: 500; top: 20; width: 40%; height: auto; object-fit: contain; z-index: 2; opacity: 0.3;">
+                        <p class="text1" style="line-height: 2;position: absolute; left: 530; top: 350; width: 45%; height: 100%; z-index: 6;">저도 드디어! 멋쟁이 토마토 케찹이 되었어요!
+                            <br>다른 많은 친구들도 땅에 묻히지 않고
+                            <br>저처럼 멋진 농산물이 될 수 있도록..</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding-top: 250px;">
+                    <img src="c_2.png" style="left: 0; top: 0; width: 600px;">
+                    <p class="text1" style="line-height: 2; padding-top: 50px;">앞으로 우리 못난이 농산물을 꼭 기억하고<br>소비해주세요!</p>
+                </div>
+            </div>
         </section>
 
-        <div style="height: 100vh; background-color: black;"></div>
+        <section style="height: 4vh; background-color: black; position: relative;">
+        </section>
+
+        <footer style="background-color: #101010; color: rgb(166, 166, 166); padding: 40px 0; position: relative; margin-top: 0;">
+            <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+                <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 10px;">
+                    <div style="text-align: center;">
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="all.png" style="max-width: 50%; height: auto; opacity: 0.5;">
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <p style="font-family: 'Wanted Sans', sans-serif; font-size: 12px; color: #666; padding-bottom: 10px;">
+                        © 2025 못난이 농산물. 모든 권리 유해령 보유.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
         <script>
             const stickyWrapper = document.getElementById('sticky-wrapper');
             const container = document.getElementById('image-scroll-container');
 
             if (stickyWrapper && container) {
-                 // 이미지가 실제로 차지하는 너비 계산 (margin 포함)
                  let contentWidth = 0;
                  Array.from(container.children).forEach(img => {
                      const imgWidth = img.offsetWidth;
@@ -232,30 +397,21 @@
 
                 const updateScroll = () => {
                     const wrapperTop = stickyWrapper.getBoundingClientRect().top;
-                    // 스크롤 가능한 높이: stickyWrapper의 총 높이에서 뷰포트 높이를 뺀 값
                     const scrollableHeight = stickyWrapper.offsetHeight - window.innerHeight;
-                    // 스크롤 진행률 (0에서 1 사이): wrapperTop이 0일 때 0, wrapperTop이 -scrollableHeight일 때 1
                     const progress = Math.max(0, Math.min(1, -wrapperTop / scrollableHeight));
 
-                    // 가로 스크롤 이동 범위
-                    // 시작 위치: 컨테이너의 왼쪽 끝이 뷰포트 오른쪽 끝에 맞춰지도록
                     const initialTranslateX = window.innerWidth;
-
-                    // 최종 위치: 컨테이너의 오른쪽 끝이 뷰포트 왼쪽 끝에 맞춰지도록
                     const finalTranslateX = -contentWidth;
 
-                    // 진행률에 따라 translateX 값 계산 (initialTranslateX에서 finalTranslateX까지 이동)
                     const newTranslateX = initialTranslateX + (finalTranslateX - initialTranslateX) * progress;
 
                     container.style.transform = `translateX(${newTranslateX}px)`;
                 };
 
                 window.addEventListener('scroll', updateScroll);
-                updateScroll(); // 초기 로드 시 위치 설정
-
-                 // 리사이즈 시 contentWidth 및 위치 재계산
+                updateScroll();
                  window.addEventListener('resize', () => {
-                     contentWidth = 0; // contentWidth 재계산
+                     contentWidth = 0; 
                       Array.from(container.children).forEach(img => {
                          const imgWidth = img.offsetWidth;
                          const style = window.getComputedStyle(img);
@@ -263,9 +419,20 @@
                          const imgMarginRight = parseFloat(style.marginRight) || 0;
                          contentWidth += imgWidth + imgMarginLeft + imgMarginRight;
                      });
-                     updateScroll(); // 현재 스크롤 위치에 맞춰 위치 업데이트
+                     updateScroll(); 
                  });
             }
+
+            // 이미지 전환 효과를 위한 스크립트
+            const foodImages = document.querySelector('.food-images');
+            const foodImageList = foodImages.querySelectorAll('img:not(:first-child)');
+            let currentImageIndex = 0;
+
+            setInterval(() => {
+                foodImageList.forEach(img => img.style.opacity = '0');
+                currentImageIndex = (currentImageIndex + 1) % foodImageList.length;
+                foodImageList[currentImageIndex].style.opacity = '1';
+            }, 2000); // 2초마다 이미지 전환
         </script>
     </body>
 </html>
